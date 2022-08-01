@@ -1,0 +1,10 @@
+autokey/*
+.idea/*
+*.pyc
+*.py~
+*.html~
+*migrations*
+*.swp
+bash/testing_branches/*
+
+

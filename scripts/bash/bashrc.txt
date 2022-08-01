@@ -1,0 +1,118 @@
+
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+        . /etc/bashrc
+fi
+
+alias ve="ve"
+
+function ve() {
+    if [ "$1" = "new" ]; then
+        virtualenv ~/.local/virtualenv/${PWD##*/}
+        read -p "Would you like to activate your Virtual Environment? (Y/N) " o
+        case "$o" in
+            y|Y ) source ~/.local/virtualenv/${PWD##*/}/bin/activate;;
+            n|N ) echo You can activate anytime by typing \'ve\' in $PWD;;
+            * ) echo Wrong Answer. Self Destruct.;;
+        esac
+    elif [ -z "$1" ]; then
+        source ~/.local/virtualenv/${PWD##*/}/bin/activate
+    fi
+}
+
+alias de="deactivate"
+
+#PYTHONPATHS
+
+export PYTHONPATH="${PYTHONPATH}:/home/cchilders/scripts/python/work-tasks/unit_tests_scripts/completed"
+
+export PYTHONPATH="${PYTHONPATH}:/home/cchilders/scripts/django_scripts"
+
+export PYTHONPATH="${PYTHONPATH}:/home/cchilders/scripts/django_test_package"
+
+
+SHSCR="/home/cchilders/scripts/bash"
+TBRANCH="$SHSCR/testing_branches"
+PYSCR="/home/cchilders/scripts/python/general"
+PYCOMPLETE="$PYSCR/completed"
+RUSCR="/home/cchilders/scripts/ruby"
+HOME="/home/cchilders"
+PROJ="/home/cchilders/projects"
+ADV="/home/cchilders/projects/advantage/dev"
+HOW="/home/cchilders/projects/www/how"
+DJANGO="/home/cchilders/scripts/django_scripts"
+UNITTESTS="/home/cchilders/scripts/python/work-tasks/unit_tests_scripts"
+LIBRARY="/home/cchilders/scripts/python/my_scripting_library"
+
+export PYTHONPATH="${PYTHONPATH}:$LIBRARY"
+
+export PYTHONPATH="${PYTHONPATH}:$UNITTESTS/completed"
+
+export PYTHONPATH="${PYTHONPATH}:$DJANGO"
+
+
+
+
+export EDITOR="nano"
+
+alias dj='cd $DJANGO; ls'
+
+alias proj='cd $HOME/projects; ls'
+
+alias scr='cd $HOME/scripts; ls'
+
+alias aps='chmod 755 $*'
+
+alias npyscr='$SHSCR/newpy.sh'
+
+alias nruscr='$SHSCR/newruby.sh'
+
+alias nshscr='$SHSCR/newshell.sh'
+
+alias shs='cd $HOME/scripts/bash; ls'
+
+alias pysmain='cd $HOME/scripts/python/general; ls'
+
+alias src='source ~/.bashrc'
+
+alias brc='nano ~/.bashrc'
+
+alias killscr='xdotool search "" windowkill %@'
+
+alias l='tree -L 3'
+
+alias shl='python manage.py shell'
+
+alias rs='python manage.py runserver'
+
+alias doc='cd $HOME/Documents'
+
+alias dl='cd $HOME/Downloads'
+
+alias up='cd ..; pwd; ls'
+
+alias pys='cd $PYCOMPLETE; ls'
+
+alias st='git status'
+
+alias all='git add -A'
+
+alias pushall='git add -A; git commit -m "autoupdate"; git push -u origin master'
+
+cloner() { $PYCOMPLETE/git_cloner.py "$@" ;}
+
+rmv() { $PYCOMPLETE/printremove.py "$@" ;}
+
+port() { $PYCOMPLETE/runport.py "$@" ;}
+
+init() { $PYCOMPLETE/git_repo_setup.py "$@" ;}
+
+startapp() { $DJANGO/startapp.py "$@" ;}
+
+modelform() { $DJANGO/models_to_modelform.py ;}
+
+cleanproject() { $DJANGO/clean_project_of_ugly_files.py ;}
+
+pretty() { $PYCOMPLETE/pretty_spacing.py "$@" ;}
